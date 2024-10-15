@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PokemonDetalle from './PokemonDetalle';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 
 function Listado() {
   const [pokemones, setPokemones] = useState([]);
@@ -19,6 +20,11 @@ function Listado() {
     };
     fetchPokemones();
   }, [page]);
+
+  const getPokemonIdFromUrl = (url) => {
+    const params = url.split('/');
+    return params[params.length -2];
+  }
 
   // Manejador para avanzar de página
   const nextPage = () => {
@@ -45,6 +51,8 @@ function Listado() {
                 <div className="card h-100 shadow-sm">
                   <div className="card-body">
                     <PokemonDetalle url={pokemon.url} />
+                    <Link to={`/listado-pokemones/${getPokemonIdFromUrl(pokemon.url)}`}>
+                      <button className='btn btn-primary mt-3' >Ver detalle</button></Link>
                   </div>
                 </div>
               </div>
