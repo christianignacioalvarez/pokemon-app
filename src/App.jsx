@@ -4,6 +4,7 @@ import Listado from './components/Listado';
 import PokemonCard from './components/PokemonCard';
 import Header from './components/Header';
 import Navbar from './components/NavBar';
+import PokemonBusqueda from './components/PokemonBusqueda';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/home" index element={<Home />} />
         <Route path="/listado-pokemones" element={<Listado />} />
         <Route path="/listado-pokemones/:id" element={<PokemonCard />} />
+        <Route path="/pokemon/:nombre" element={<PokemonBusqueda />} />
       </Routes>
     </Router>
   );

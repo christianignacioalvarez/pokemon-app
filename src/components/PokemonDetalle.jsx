@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function PokemonDetalle({ url }) {
   const [pokemon, setPokemon] = useState(null);
+  const [error, setError] = useState(null);
 
   // Objeto con colores para cada tipo de Pokémon
   const typeColors = {
@@ -28,8 +29,13 @@ function PokemonDetalle({ url }) {
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
+      try {
       const response = await axios.get(url);
       setPokemon(response.data);
+      setError(null);
+      } catch (err) {
+        setError("Pokemon no encontrado.")
+      }
     };
     fetchPokemonDetails();
   }, [url]);
