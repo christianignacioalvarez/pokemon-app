@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const PokemonCard = () => {
@@ -8,6 +8,7 @@ const PokemonCard = () => {
   const [pokemon, setPokemon] = useState(null);
   const [evolutions, setEvolutions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -42,10 +43,20 @@ const PokemonCard = () => {
       } catch (error) {
         console.error('Error fetching the Pokémon details or evolutions:', error);
         setLoading(false);
+        setPokemon(null);
       }
     };
     fetchPokemon();
   }, [id]);
+
+  const handleNextPokemon = () => {
+    const nextID = parseInt(id) + 1;
+    navigate(`/listado-pokemones/${nextID}`);
+  };
+
+  const handleBackList = () => {
+    navigate('/listado-pokemones');
+  }
 
   if (loading) {
     return <p className="text-center">Cargando detalles del Pokémon...</p>;
@@ -106,6 +117,10 @@ const PokemonCard = () => {
         ) : (
           <p>Este Pokémon no tiene evoluciones.</p>
         )}
+      </div>
+      <div className="mt-4 text-center">
+        <button onClick={handleBackList} className="btn btn-secondary me-3">Volver al Listado</button>
+        <button onClick={handleNextPokemon} className="btn btn-primary">Siguiente Pokémon</button>
       </div>
     </div>
   );
