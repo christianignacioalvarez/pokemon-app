@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { getColorbyPokemon } from '../utils/colors';
 
 const PokemonCard = () => {
   const { id } = useParams();
   const [pokemon, setPokemon] = useState(null);
   const [evolutions, setEvolutions] = useState([]);
+  const [pokemonColor, setPokemonColor] = useState('#F1F1F1');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -21,7 +24,6 @@ const PokemonCard = () => {
         const evolutionChainUrl = speciesResponse.data.evolution_chain.url;
         const evolutionResponse = await axios.get(evolutionChainUrl);
         const chain = evolutionResponse.data.chain;
-
         const fetchEvolutionData = async (chain) => {
           const evolutionData = [];
           let currentChain = chain;
@@ -49,6 +51,11 @@ const PokemonCard = () => {
     fetchPokemon();
   }, [id]);
 
+  useEffect(() => {
+    const colorName = pokemon?.types[0].type.name;
+    setPokemonColor(getColorbyPokemon(colorName));
+  }, [pokemon])
+
   const handleNextPokemon = () => {
     const nextID = parseInt(id) + 1;
     navigate(`/listado-pokemones/${nextID}`);
@@ -56,7 +63,7 @@ const PokemonCard = () => {
 
   const handleBackList = () => {
     navigate('/listado-pokemones');
-  }
+  };
 
   if (loading) {
     return <p className="text-center">Cargando detalles del Pokémon...</p>;
@@ -67,41 +74,67 @@ const PokemonCard = () => {
   }
 
   return (
-    <div className="container-fluid mt-5">
-      <div className="row">
+    <div className="container mx-5">
+      <div className="row bg-light" style={{boxShadow: '0px 4px 10px rgba(0,0,0,0.1)'}}>
         {/* Parte izquierda: Detalles del Pokémon */}
-        <div className="col-12 col-md-6">
+        <div className="col-12 col-md-6 p-4">
           <h2 className="text-capitalize">{pokemon.name}</h2>
-          <p><strong>Altura:</strong> {pokemon.height} decímetros</p>
-          <p><strong>Peso:</strong> {pokemon.weight} hectogramos</p>
-          <p><strong>Habilidades:</strong> 
-            {pokemon.abilities.map((ability, index) => (
-              <span key={index}> {ability.ability.name}{index < pokemon.abilities.length - 1 && ', '}</span>
-            ))}
-          </p>
-          <p><strong>Tipos:</strong>
-            {pokemon.types.map((type, index) => (
-              <span key={index}> {type.type.name}{index < pokemon.types.length - 1 && ', '}</span>
-            ))}
-          </p>
+          <div className="mt-3">
+            <p><strong>Altura:</strong> {pokemon.height} decímetros</p>
+            <p><strong>Peso:</strong> {pokemon.weight} hectogramos</p>
+            <p><strong>Habilidades:</strong></p>
+            <div className="d-flex flex-wrap gap-1">
+              {pokemon.abilities.map((ability, index) => (
+                <span key={index} className="badge badge-pill bg-primary text-white">
+                  {ability.ability.name}
+                </span>
+              ))}
+            </div>
+            <p><strong>Tipos:</strong> {pokemon.types.map(type => type.type.name).join(', ')}</p>
+          </div>
         </div>
 
-        <div className="col-12 col-md-6 text-center">
-          <img
-            src={pokemon.sprites.other['official-artwork'].front_default}
-            alt={pokemon.name}
-            className="img-fluid mb-3"
-            style={{ maxHeight: '300px' }}
-          />
+        {/* Parte derecha: Imagen del Pokémon con fondo personalizado */}
+        <div className="col-12 col-md-6 text-center rounded-start-pill" style={{ backgroundColor: pokemonColor, borderRadius: '15px', padding: '1rem' }}>
+          <div
+            className="rounded-start-pill p-3 mx-auto"
+            style={{
+              width: "450px",
+              position: "relative",
+              right: "-58px",
+              backgroundColor: pokemonColor,
+              borderRadius: '50%',
+              boxShadow: '0px 4px 20px rgba(0,0,0,0.1)'
+            }}
+          >
+            <img
+              src={pokemon.sprites.other['official-artwork'].front_default}
+              alt={pokemon.name}
+              className="img-fluid"
+              style={{ maxHeight: '250px' }}
+            />
+
+          </div>
         </div>
       </div>
 
-      <div className="mt-5">
-        <h4>Evoluciones:</h4>
+      {/* Evoluciones */}
+      <div className="py-5">
+        <h4 style={{ textAlign: "center" }} >EVOLUCIONES</h4>
         {evolutions.length > 0 ? (
-          <div className="d-flex justify-content-start flex-wrap">
+          <div className="d-flex justify-content-center flex-wrap">
             {evolutions.map((evolution, index) => (
-              <div key={index} className="card m-2" style={{ width: '150px' }}>
+              <div
+              key={index}
+              className="card m-4"
+              style={{
+                width: '160px',
+                borderRadius: '10px',
+                padding: '12px',
+                border: evolution.name === pokemon.name ? `2px solid ${pokemonColor}` : 'none',
+                boxShadow: evolution.name === pokemon.name ? ` 0px 9px 24px 7px ${pokemonColor}` : '0px 4px 10px rgba(0,0,0,0.1)'
+              }}
+            >
                 <img
                   src={evolution.image}
                   alt={evolution.name}
@@ -118,9 +151,43 @@ const PokemonCard = () => {
           <p>Este Pokémon no tiene evoluciones.</p>
         )}
       </div>
-      <div className="mt-4 text-center">
-        <button onClick={handleBackList} className="btn btn-secondary me-3">Volver al Listado</button>
-        <button onClick={handleNextPokemon} className="btn btn-primary">Siguiente Pokémon</button>
+
+      {/* Botones de navegación */}
+      <div className="py-4 text-center">
+        <button
+          onClick={handleBackList}
+          className="btn me-3"
+          style={{
+            backgroundColor: 'rgba(255, 0, 0, 0.1)', // rojo claro y semitransparente
+            color: '#FF0000', // texto rojo
+            border: '2px solid #FF0000', // borde rojo
+            borderRadius: '50px', // estilo pill
+            padding: '12px 30px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+          }}
+        >
+          <i className="fas fa-arrow-left" style={{ marginRight: '8px', color: '#FF0000' }}></i> Volver al Listado
+        </button>
+        <button
+          onClick={handleNextPokemon}
+          className="btn"
+          style={{
+            backgroundColor: 'rgba(255, 0, 0, 0.1)', // rojo claro y semitransparente
+            color: '#FF0000', // texto rojo
+            border: '2px solid #FF0000', // borde rojo
+            borderRadius: '50px', // estilo pill
+            padding: '12px 30px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+          }}
+        >
+          Siguiente Pokémon <i className="fas fa-arrow-right" style={{ marginLeft: '8px', color: '#FF0000' }}></i>
+        </button>
       </div>
     </div>
   );
