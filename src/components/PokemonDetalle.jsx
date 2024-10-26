@@ -1,31 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getColorbyPokemon } from '../utils/colors';
 
 function PokemonDetalle({ url }) {
   const [pokemon, setPokemon] = useState(null);
   const [error, setError] = useState(null);
-
-  // Objeto con colores para cada tipo de Pokémon
-  const typeColors = {
-    grass: '#78C850',
-    fire: '#F08030',
-    water: '#6890F0',
-    bug: '#A8B820',
-    normal: '#A8A878',
-    poison: '#A040A0',
-    electric: '#F8D030',
-    ground: '#E0C068',
-    fairy: '#EE99AC',
-    fighting: '#C03028',
-    psychic: '#F85888',
-    rock: '#B8A038',
-    ghost: '#705898',
-    ice: '#98D8D8',
-    dragon: '#7038F8',
-    dark: '#705848',
-    steel: '#B8B8D0',
-    flying: '#A890F0',
-  };
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
@@ -51,7 +30,7 @@ function PokemonDetalle({ url }) {
   const types = pokemon.types.map(typeInfo => typeInfo.type.name).join(', ');
 
   // Obtener el color del tipo principal
-  const backgroundColor = typeColors[mainType] || '#fff'; // Blanco si no se encuentra el tipo
+  const backgroundColor = getColorbyPokemon(mainType);
 
   return (
     <div className="text-center" style={{ backgroundColor, borderRadius: '10px', padding: '10px', color: 'white' }}>
