@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const Evoluciones = ({ evolutions, pokemonColor, currentPokemonName }) => (
   <div className="py-5">
-    <h4 style={{ textAlign: "center" }}>EVOLUCIONES</h4>
+    <h4 className="pokemon-font" style={{ textAlign: "center" }}>EVOLUCIONES</h4>
     {evolutions.length > 0 ? (
       <div className="d-flex justify-content-center flex-wrap">
         {evolutions.map((evolution, index) => (
