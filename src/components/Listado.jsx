@@ -49,10 +49,11 @@ function Listado() {
             {pokemones.map((pokemon, index) => (
               <div key={index} className="col-md-4 mb-4">
                 <div className="card h-100 shadow-sm">
-                  <div className="card-body">
+                  <div className="card-body" style={{ width: "100%" }}>
                     <PokemonDetalle url={pokemon.url} />
-                    <Link to={`/listado-pokemones/${getPokemonIdFromUrl(pokemon.url)}`}>
-                      <button className='btn btn-primary mt-3' >Ver detalle</button></Link>
+                    <Link style={{ width: "100%" }} to={`/listado-pokemones/${getPokemonIdFromUrl(pokemon.url)}`}>
+                      <button className='btn btn-primary mt-3' style={{ width: "100%" }} >Ver detalle</button>
+                    </Link>
                   </div>
                 </div>
               </div>

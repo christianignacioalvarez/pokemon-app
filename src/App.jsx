@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/Home';
 import Listado from './components/Listado';
-import PokemonCard from './components/PokemonCard';
 import Header from './components/Header';
 import Navbar from './components/NavBar';
 import PokemonBusqueda from './components/PokemonBusqueda';
+import PokemonCard from './components/pokemonCard/PokemonCard';
 
 function App() {
   return (
