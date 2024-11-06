@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link , useNavigate} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/NavBar.css';
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');

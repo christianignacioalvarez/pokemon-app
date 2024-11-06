@@ -1,0 +1,15 @@
+header {
+  background: linear-gradient(90deg, #3b4cca, #1e3a8a);
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título del encabezado */
+header h1 {
+  color: #ffcb05;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-shadow: 2px 2px #1e3a8a;
+  margin: 0;
+  text-transform: uppercase;
+}

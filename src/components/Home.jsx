@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react';
 import axios from 'axios';
 import homeImage from '../assets/pokemon.png';
+import '../styles/Home.css'
 
 function Home() {
   const [listaPokemones, setListaPokemones] = useState([]);
