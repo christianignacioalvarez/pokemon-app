@@ -42,10 +42,14 @@ const PokemonCard = () => {
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
       <div className="container mx-5">
-        <div className="row bg-light" style={{ boxShadow: '0px 4px 10px rgba(0,0,0,0.1)' }}>
-          <PokemonDetails pokemon={pokemon} />
-          <PokemonImage pokemon={pokemon} pokemonColor={pokemonColor} />
-        </div>
+          <div className="d-flex align-items-center" style={{ width: '100%' }}>
+            <div className="d-flex bg-light rounded p-4" style={{ width: '100%', boxShadow: '0px 4px 10px rgba(0,0,0,0.1)' }}>
+              <PokemonDetails pokemon={pokemon} />
+            </div>
+            <div style={{ flex: '0 0 50%' }}>
+              <PokemonImage pokemon={pokemon} pokemonColor={pokemonColor} />
+            </div>
+          </div>
         <Evolutions evolutions={evolutions} pokemonColor={pokemonColor} currentPokemonName={pokemon.name} />
         <Navegacion handleBackList={handleBackList} handleNextPokemon={handleNextPokemon} />
       </div>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const PokemonImage = ({ pokemon, pokemonColor }) => (
-    <div className="col-12 col-md-6 text-center rounded-start-pill" style={{ backgroundColor: pokemonColor, borderRadius: '15px', padding: '1rem' }}>
+    <div className="text-center rounded-start-pill" style={{ backgroundColor: pokemonColor, borderRadius: '15px', padding: '1rem' }}>
       <div
         className="rounded-start-pill p-3 mx-auto"
         style={{
