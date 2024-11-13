@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import PokemonDetalle from './PokemonDetalle';
+import PokemonDetalle from '../components/PokemonDetalle';
 
 function PokemonBusqueda() {
   const { nombre } = useParams();

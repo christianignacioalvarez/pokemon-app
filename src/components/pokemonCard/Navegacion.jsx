@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const Navegacion = ({ handleBackList, handleNextPokemon }) => (
+const Navegacion = ({ handleBackList, handleNextPokemon, handlePrevPokemon }) => (
   <div className="container-fluid py-4">
     <div className="d-flex align-items-center justify-content-center position-relative">
 
@@ -27,7 +27,7 @@ const Navegacion = ({ handleBackList, handleNextPokemon }) => (
 
       <section className="d-flex gap-3 mx-auto">
         <button
-          onClick={handleNextPokemon}
+          onClick={handlePrevPokemon}
           className="btn"
           style={{
             backgroundColor: 'rgba(255, 0, 0, 0.1)',
@@ -68,6 +68,7 @@ const Navegacion = ({ handleBackList, handleNextPokemon }) => (
 Navegacion.propTypes = {
   handleBackList: PropTypes.func.isRequired,
   handleNextPokemon: PropTypes.func.isRequired,
+  handlePrevPokemon: PropTypes.func.isRequired
 };
 
 export default Navegacion;

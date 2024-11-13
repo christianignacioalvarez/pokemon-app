@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchPokemonData } from '../../api/fetchPokemonData';
-import { getColorbyPokemon } from '../../utils/colors';
-import PokemonDetails from './PokemonDetails';
-import Evolutions from './Evoluciones';
-import Navegacion from './Navegacion';
-import PokemonImage from './PokemonImagen';
-import Loading from '../Loading';
+import { fetchPokemonData } from '../api/fetchPokemonData';
+import { getColorbyPokemon } from '../utils/colors';
+import PokemonDetails from '../components/pokemonCard/PokemonDetails';
+import Evolutions from '../components/pokemonCard/Evoluciones';
+import Navegacion from '../components/pokemonCard/Navegacion';
+import PokemonImage from '../components/pokemonCard/PokemonImagen';
+import Loading from '../components/Loading';
 
 const PokemonCard = () => {
   const { id } = useParams();
@@ -34,6 +34,11 @@ const PokemonCard = () => {
   }, [id]);
 
   const handleNextPokemon = () => navigate(`/listado-pokemones/${parseInt(id) + 1}`);
+  const handlePrevPokemon = () => {
+    if (parseInt(id) > 1) {
+      navigate(`/listado-pokemones/${parseInt(id) - 1}`);
+    }
+  };
   const handleBackList = () => navigate('/listado-pokemones');
 
   if (loading) return <Loading />;
@@ -51,7 +56,7 @@ const PokemonCard = () => {
             </div>
           </div>
         <Evolutions evolutions={evolutions} pokemonColor={pokemonColor} currentPokemonName={pokemon.name} />
-        <Navegacion handleBackList={handleBackList} handleNextPokemon={handleNextPokemon} />
+        <Navegacion handleBackList={handleBackList} handleNextPokemon={handleNextPokemon} handlePrevPokemon={handlePrevPokemon}/>
       </div>
     </div>
   );

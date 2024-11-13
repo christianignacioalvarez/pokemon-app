@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import PokemonDetalle from './PokemonDetalle';
+import PokemonDetalle from '../components/PokemonDetalle';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
