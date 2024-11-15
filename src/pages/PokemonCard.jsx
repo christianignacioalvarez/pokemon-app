@@ -9,7 +9,7 @@ import PokemonImage from '../components/pokemonCard/PokemonImagen';
 import Loading from '../components/Loading';
 
 const PokemonCard = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // Puede ser un nombre o un ID
   const [pokemon, setPokemon] = useState(null);
   const [evolutions, setEvolutions] = useState([]);
   const [pokemonColor, setPokemonColor] = useState('#F1F1F1');
@@ -20,7 +20,7 @@ const PokemonCard = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await fetchPokemonData(id);
+        const data = await fetchPokemonData(id); // Maneja nombres e IDs
         setPokemon(data.pokemon);
         setEvolutions(data.evolutions);
         setPokemonColor(getColorbyPokemon(data.pokemon.types[0].type.name));
@@ -39,7 +39,7 @@ const PokemonCard = () => {
       navigate(`/listado-pokemones/${parseInt(id) - 1}`);
     }
   };
-  const handleBackList = () => navigate('/listado-pokemones');
+  const handleBackList = () => navigate('/');
 
   if (loading) return <Loading />;
   if (!pokemon) return <p className="text-center">No se pudo cargar el Pokémon.</p>;
@@ -47,16 +47,27 @@ const PokemonCard = () => {
   return (
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
       <div className="container mx-5">
-          <div className="d-flex align-items-center" style={{ width: '100%' }}>
-            <div className="d-flex bg-light rounded p-4" style={{ width: '100%', boxShadow: '0px 4px 10px rgba(0,0,0,0.1)' }}>
-              <PokemonDetails pokemon={pokemon} />
-            </div>
-            <div style={{ flex: '0 0 50%' }}>
-              <PokemonImage pokemon={pokemon} pokemonColor={pokemonColor} />
-            </div>
+        <div className="d-flex align-items-center" style={{ width: '100%' }}>
+          <div
+            className="d-flex bg-light rounded p-4"
+            style={{ width: '100%', boxShadow: '0px 4px 10px rgba(0,0,0,0.1)' }}
+          >
+            <PokemonDetails pokemon={pokemon} />
           </div>
-        <Evolutions evolutions={evolutions} pokemonColor={pokemonColor} currentPokemonName={pokemon.name} />
-        <Navegacion handleBackList={handleBackList} handleNextPokemon={handleNextPokemon} handlePrevPokemon={handlePrevPokemon}/>
+          <div style={{ flex: '0 0 50%' }}>
+            <PokemonImage pokemon={pokemon} pokemonColor={pokemonColor} />
+          </div>
+        </div>
+        <Evolutions
+          evolutions={evolutions}
+          pokemonColor={pokemonColor}
+          currentPokemonName={pokemon.name}
+        />
+        <Navegacion
+          handleBackList={handleBackList}
+          handleNextPokemon={handleNextPokemon}
+          handlePrevPokemon={handlePrevPokemon}
+        />
       </div>
     </div>
   );

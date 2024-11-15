@@ -32,7 +32,7 @@
 }
 
 .main-logo {
-  position: center;
+  position: relative;
   z-index: 1;
   height: 120px;
   width: auto;
