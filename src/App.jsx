@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Navbar from './components/NavBar';
 import PokemonBusqueda from './pages/PokemonBusqueda';
 import PokemonCard from './pages/PokemonCard';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function App() {
   return (
