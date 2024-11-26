@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const Navegacion = ({ handleBackList, handleNextPokemon, handlePrevPokemon }) => (
+const Navegacion = ({ handleBackList, handleNextPokemon, handlePrevPokemon,handlePrevEvolution,handleNextEvolution }) => (
   <div className="container-fluid py-4">
     <div className="d-flex align-items-center justify-content-center position-relative">
 
@@ -41,7 +41,41 @@ const Navegacion = ({ handleBackList, handleNextPokemon, handlePrevPokemon }) =>
             alignItems: 'center',
           }}
         >
+          <i className="fas fa-arrow-left" style={{ marginRight: '8px', color: '#FF0000' }}></i> Anterior Pokemon
+        </button>
+        <button
+          onClick={handlePrevEvolution}
+          className="btn"
+          style={{
+            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+            color: '#FF0000',
+            border: '2px solid #FF0000',
+            borderRadius: '50px',
+            padding: '5px 15px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+          }}
+        >
           <i className="fas fa-arrow-left" style={{ marginRight: '8px', color: '#FF0000' }}></i> Anterior 
+        </button>
+        <button
+          onClick={handleNextEvolution}
+          className="btn"
+          style={{
+            backgroundColor: 'rgba(255, 0, 0, 0.1)',
+            color: '#FF0000',
+            border: '2px solid #FF0000',
+            borderRadius: '50px',
+            padding: '5px 15px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+          }}
+        >
+          Siguiente <i className="fas fa-arrow-right" style={{ marginLeft: '8px', color: '#FF0000' }}></i>
         </button>
         <button
           onClick={handleNextPokemon}
@@ -58,7 +92,7 @@ const Navegacion = ({ handleBackList, handleNextPokemon, handlePrevPokemon }) =>
             alignItems: 'center',
           }}
         >
-          Siguiente <i className="fas fa-arrow-right" style={{ marginLeft: '8px', color: '#FF0000' }}></i>
+          Siguiente Pokemon<i className="fas fa-arrow-right" style={{ marginLeft: '8px', color: '#FF0000' }}></i>
         </button>
       </section>
     </div>
@@ -68,7 +102,9 @@ const Navegacion = ({ handleBackList, handleNextPokemon, handlePrevPokemon }) =>
 Navegacion.propTypes = {
   handleBackList: PropTypes.func.isRequired,
   handleNextPokemon: PropTypes.func.isRequired,
-  handlePrevPokemon: PropTypes.func.isRequired
+  handlePrevPokemon: PropTypes.func.isRequired,
+  handleNextEvolution: PropTypes.func.isRequired,
+  handlePrevEvolution: PropTypes.func.isRequired
 };
 
 export default Navegacion;

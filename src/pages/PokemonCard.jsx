@@ -33,10 +33,16 @@ const PokemonCard = () => {
     fetchData();
   }, [id]);
 
-  const handleNextPokemon = () => navigate(`/listado-pokemones/${parseInt(id) + 1}`);
-  const handlePrevPokemon = () => {
+  const handleNextEvolution = () => navigate(`/listado-pokemones/${parseInt(id) + 1}`);
+  const handlePrevEvolution = () => {
     if (parseInt(id) > 1) {
       navigate(`/listado-pokemones/${parseInt(id) - 1}`);
+    }
+  };
+  const handleNextPokemon = () => navigate(`/listado-pokemones/${parseInt(id) + 3}`);
+  const handlePrevPokemon = () => {
+    if (parseInt(id) > 3) {
+      navigate(`/listado-pokemones/${parseInt(id) - 3}`);
     }
   };
   const handleBackList = () => navigate('/');
@@ -65,8 +71,10 @@ const PokemonCard = () => {
         />
         <Navegacion
           handleBackList={handleBackList}
-          handleNextPokemon={handleNextPokemon}
           handlePrevPokemon={handlePrevPokemon}
+          handleNextEvolution={handleNextEvolution}
+          handlePrevEvolution={handlePrevEvolution}
+          handleNextPokemon={handleNextPokemon}
         />
       </div>
     </div>
