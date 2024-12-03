@@ -4,9 +4,7 @@ import PokemonDetalle from '../components/PokemonDetalle';
 function PokemonBusqueda() {
   const { nombre } = useParams();
   const apiUrl = `https://pokeapi.co/api/v2/pokemon/${nombre}`;
-  if (loading) {
-    return <Loading />;
-  }
+
   return <PokemonDetalle url={apiUrl} />;
 }
 
