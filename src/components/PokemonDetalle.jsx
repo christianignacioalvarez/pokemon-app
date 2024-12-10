@@ -55,13 +55,7 @@ function PokemonDetalle({ url }) {
       <h5 className="card-title text-capitalize">{pokemon.name}</h5>
       {/* Mostrar detalles adicionales del Pokémon */}
       <p>
-        <strong>Altura:</strong> {pokemon.height / 10} m
-      </p>
-      <p>
-        <strong>Peso:</strong> {pokemon.weight / 10} kg
-      </p>
-      <p>
-        <strong>Tipos:</strong> {types}
+        <strong>N°</strong> {pokemon.id} 
       </p>
     </div>
   );
