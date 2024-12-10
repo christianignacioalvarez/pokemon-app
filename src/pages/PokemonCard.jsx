@@ -45,7 +45,7 @@ const PokemonCard = () => {
       navigate(`/listado-pokemones/${parseInt(id) - 3}`);
     }
   };
-  const handleBackList = () => navigate('/');
+  const handleBackList = () => navigate('/listado-pokemones');
 
   if (loading) return <Loading />;
   if (!pokemon) return <p className="text-center">No se pudo cargar el Pokémon.</p>;

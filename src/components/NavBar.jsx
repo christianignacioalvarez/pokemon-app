@@ -10,7 +10,7 @@ function Navbar() {
   const handleSearch = (event) => {
     event.preventDefault();
     if(searchQuery.trim()) {
-      navigate(`/pokemon/${searchQuery.toLowerCase()}`);
+      navigate(`/listado-pokemones/${searchQuery.toLowerCase()}`);
       setSearchQuery('');
     }
   }
