@@ -3,7 +3,6 @@ import Home from './pages/Home';
 import Listado from './pages/Listado';
 import Header from './components/Header';
 import Navbar from './components/NavBar';
-import PokemonBusqueda from './pages/PokemonBusqueda';
 import PokemonCard from './pages/PokemonCard';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Pagina404 from './pages/Pagina404';
@@ -18,7 +17,6 @@ function App() {
         <Route path="/home" index element={<Home />} />
         <Route path="/listado-pokemones" element={<Listado />} />
         <Route path="/listado-pokemones/:id" element={<PokemonCard />} />
-        <Route path="/pokemon/:nombre" element={<PokemonBusqueda />} />
         <Route path="/404" element={<Pagina404/>} />
 
       </Routes>
