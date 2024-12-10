@@ -9,18 +9,16 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>
 );
 
-// Agrega el evento al botón después de que React haya renderizado el DOM
 document.addEventListener('DOMContentLoaded', () => {
   const searchButton = document.getElementById('search-btn');
   const spinner = document.getElementById('loading-spinner');
 
   if (searchButton && spinner) {
     searchButton.addEventListener('click', () => {
-      spinner.style.display = 'inline-block'; // Muestra el spinner al iniciar la búsqueda
+      spinner.style.display = 'inline-block'; 
 
-      // Simula una búsqueda (reemplaza esto con tu lógica real)
       setTimeout(() => {
-        spinner.style.display = 'none'; // Oculta el spinner después de 2 segundos
+        spinner.style.display = 'none';
       }, 2000);
     });
   }

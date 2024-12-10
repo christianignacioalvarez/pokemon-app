@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 
 function Listado() {
   const [pokemones, setPokemones] = useState([]);
-  const [page, setPage] = useState(0); // Controla la página actual
+  const [page, setPage] = useState(0); 
   const [loading, setLoading] = useState(false);
 
-  const limit = 9; // Cuántos Pokémon mostrar por página
+  const limit = 9; 
 
   useEffect(() => {
     const fetchPokemones = async () => {
@@ -26,12 +26,10 @@ function Listado() {
     return params[params.length -2];
   }
 
-  // Manejador para avanzar de página
   const nextPage = () => {
     setPage(prevPage => prevPage + 1);
   };
 
-  // Manejador para retroceder de página
   const prevPage = () => {
     if (page > 0) {
       setPage(prevPage => prevPage - 1);

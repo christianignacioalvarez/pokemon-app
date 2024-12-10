@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getColorbyPokemon } from '../utils/colors';
@@ -31,13 +30,10 @@ function PokemonDetalle({ url }) {
     return <p>Cargando...</p>;
   }
 
-  // Obtener el tipo principal del Pokémon
   const mainType = pokemon.types[0].type.name;
 
-  // Obtener los tipos del Pokémon
   const types = pokemon.types.map((typeInfo) => typeInfo.type.name).join(', ');
 
-  // Obtener el color del tipo principal
   const backgroundColor = getColorbyPokemon(mainType);
 
   return (
@@ -45,15 +41,12 @@ function PokemonDetalle({ url }) {
       className="text-center"
       style={{ backgroundColor, borderRadius: '10px', padding: '10px', color: 'white' }}
     >
-      {/* Mostrar la imagen del Pokémon */}
       <img
         src={pokemon.sprites.front_default}
         alt={pokemon.name}
         className="img-fluid mb-2"
       />
-      {/* Mostrar el nombre del Pokémon */}
       <h5 className="card-title text-capitalize">{pokemon.name}</h5>
-      {/* Mostrar detalles adicionales del Pokémon */}
       <p>
         <strong>N°</strong> {pokemon.id} 
       </p>

@@ -2,7 +2,7 @@
   background-image: url('../assets/pokefondo.jpg');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 1600px 300px; /* Definimos ancho y alto específicos */
+  background-size: 1600px 300px; 
   background-color: #1e3a8a;
   height: 200px;
   padding: 1.5rem;
@@ -12,7 +12,6 @@
   width: 100%;
 }
 
-/* Alternativa usando el contenedor de imagen */
 .background-container {
   position: absolute;
   top: 0;
@@ -26,8 +25,8 @@
 }
 
 .background-container img {
-  width: 800px; /* Ancho específico */
-  height: 200px; /* Alto específico */
+  width: 800px; 
+  height: 200px; 
   object-fit: fill;
 }
 

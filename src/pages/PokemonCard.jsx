@@ -9,7 +9,7 @@ import PokemonImage from '../components/pokemonCard/PokemonImagen';
 import Loading from '../components/Loading';
 
 const PokemonCard = () => {
-  const { id } = useParams(); // Puede ser un nombre o un ID
+  const { id } = useParams(); 
   const [pokemon, setPokemon] = useState(null);
   const [evolutions, setEvolutions] = useState([]);
   const [pokemonColor, setPokemonColor] = useState('#F1F1F1');
@@ -20,7 +20,7 @@ const PokemonCard = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await fetchPokemonData(id); // Maneja nombres e IDs
+        const data = await fetchPokemonData(id); 
         setPokemon(data.pokemon);
         setEvolutions(data.evolutions);
         setPokemonColor(getColorbyPokemon(data.pokemon.types[0].type.name));
