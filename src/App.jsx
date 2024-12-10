@@ -6,6 +6,7 @@ import Navbar from './components/NavBar';
 import PokemonBusqueda from './pages/PokemonBusqueda';
 import PokemonCard from './pages/PokemonCard';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import Pagina404 from './pages/Pagina404';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route path="/listado-pokemones" element={<Listado />} />
         <Route path="/listado-pokemones/:id" element={<PokemonCard />} />
         <Route path="/pokemon/:nombre" element={<PokemonBusqueda />} />
+        <Route path="/404" element={<Pagina404/>} />
+
       </Routes>
     </Router>
   );

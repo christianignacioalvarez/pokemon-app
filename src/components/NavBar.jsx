@@ -1,5 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
-import { Link , useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/NavBar.css';
 
@@ -7,13 +8,22 @@ function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
-  const handleSearch = (event) => {
+  const handleSearch = async (event) => {
     event.preventDefault();
-    if(searchQuery.trim()) {
+    if (!searchQuery.trim()) return;
+
+    try {
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${searchQuery.toLowerCase()}`
+      );
       navigate(`/listado-pokemones/${searchQuery.toLowerCase()}`);
-      setSearchQuery('');
+    } catch (error) {
+      navigate('/404');
     }
-  }
+
+    setSearchQuery('');
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
